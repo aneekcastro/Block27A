@@ -1,19 +1,23 @@
-//Prompt visitor for flavors
-const visitor = prompt("vanilla,vanilla,strawberry,coffee,coffee");
+// Prompt visitor for froyo flavors
+const visitor = prompt("Enter froyo flavors separated by commas:");
 
-const flavors = visitor.split(',')
-
-const flavorCounts = {};
-
-flavors.forEach(flavor => {
-    flavor = flavor.trim();
-    if (flavor) {
-        flavorCounts[flavor] = (flavorCounts[flavor]|| 0) + 1;
+if (visitor) {
+    // Function to count the frequencies of elements in an array
+    function countFlavors(input) {
+        const flavors = input.split(',');
+        const flavorCounts = {};
+        flavors.forEach(flavor => {
+            flavor = flavor.trim();
+            if (flavor) {
+                flavorCounts[flavor] = (flavorCounts[flavor] || 0) + 1;
+            }
+        });
+        return flavorCounts;
     }
-});
 
-console.table(flavorCounts);    
-
-if (!visitor) {
-     console.log("No flavors enetered!");
+    // Call the function and display the result
+    const flavorCounts = countFlavors(visitor);
+    console.table(flavorCounts);
+} else {
+    console.log("No flavors entered!");
 }
